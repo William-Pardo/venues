@@ -1,0 +1,520 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Walkthrough 360</title>
+
+  <link rel="stylesheet" href="pannellum/pannellum.css" />
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #000;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #panorama {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 18px;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(6px);
+      box-sizing: border-box;
+    }
+
+    .topbar-title {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+
+    .topbar-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .topbar button {
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+      padding: 8px 14px;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.12);
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .topbar button:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .bottombar {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      z-index: 10;
+      transform: translateX(-50%);
+      padding: 10px 16px;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 999px;
+      font-size: 14px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-title">Walkthrough 360 — Cántalo Fútbol Fest</div>
+    <div class="topbar-actions">
+      <button id="homeButton" type="button">Inicio</button>
+      <button id="fullscreenButton" type="button">Pantalla completa</button>
+    </div>
+  </div>
+
+  <div id="panorama"></div>
+
+  <div class="bottombar">Usa el mouse para mirar alrededor. Haz clic en los puntos para avanzar.</div>
+
+  <script src="pannellum/pannellum.js"></script>
+  <script>
+    const viewer = pannellum.viewer('panorama', {
+      default: {
+        firstScene: 's01_portal',
+        sceneFadeDuration: 800,
+        autoLoad: true,
+        yaw: 0,
+        hfov: 100
+      },
+      scenes: {
+        s01_portal: {
+          title: 'Render S01 Portal',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S01 Portal.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: 0,
+              type: 'scene',
+              text: 'Entrar al túnel',
+              sceneId: 's02_tunel'
+            }
+          ]
+        },
+        s02_tunel: {
+          title: 'Render S03 Tunel',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S03 Tunel.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: 0,
+              type: 'scene',
+              text: 'Avanzar a Photo Opportunity',
+              sceneId: 's03_photo'
+            },
+            {
+              pitch: 0,
+              yaw: 180,
+              type: 'scene',
+              text: 'Volver al Portal',
+              sceneId: 's01_portal'
+            }
+          ]
+        },
+        s03_photo: {
+          title: 'Render S04 Photo oportunities',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S04 Photo oportunities.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: 0,
+              type: 'scene',
+              text: 'Avanzar a Plaza Central',
+              sceneId: 's04_plaza'
+            },
+            {
+              pitch: 0,
+              yaw: 180,
+              type: 'scene',
+              text: 'Volver al Túnel',
+              sceneId: 's02_tunel'
+            }
+          ]
+        },
+        s04_plaza: {
+          title: 'Render S05 Plaza central',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S05 Plaza central.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: -60,
+              type: 'scene',
+              text: 'Ir a VIP',
+              sceneId: 's05_vip'
+            },
+            {
+              pitch: 0,
+              yaw: 60,
+              type: 'scene',
+              text: 'Ir a Stands',
+              sceneId: 's06_stands'
+            },
+            {
+              pitch: 0,
+              yaw: 120,
+              type: 'scene',
+              text: 'Ir a Pasegol',
+              sceneId: 's11_pasegol'
+            },
+            {
+              pitch: 0,
+              yaw: 0,
+              type: 'scene',
+              text: 'Ir a Escenario',
+              sceneId: 's10_escenario'
+            },
+            {
+              pitch: 0,
+              yaw: 180,
+              type: 'scene',
+              text: 'Volver a Photo Opportunity',
+              sceneId: 's03_photo'
+            }
+          ]
+        },
+        s05_vip: {
+          title: 'Render S06 Zona Especial VIP',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S06 Zona Especial VIP.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: 180,
+              type: 'scene',
+              text: 'Volver a Plaza Central',
+              sceneId: 's04_plaza'
+            }
+          ]
+        },
+        s06_stands: {
+          title: 'Render S07 Stands Patrocinados',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S07 Stands Patrocinados.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: 0,
+              type: 'scene',
+              text: 'Ir a Gastronomía / Stands complementarios',
+              sceneId: 's07_gastro'
+            },
+            {
+              pitch: 0,
+              yaw: 180,
+              type: 'scene',
+              text: 'Volver a Plaza Central',
+              sceneId: 's04_plaza'
+            }
+          ]
+        },
+        s07_gastro: {
+          title: 'Render S08 STANDS COMPLEMENTARIOS',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S08 STANDS COMPLEMENTARIOS.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: 0,
+              type: 'scene',
+              text: 'Ir a Circulación',
+              sceneId: 's08_circulacion'
+            },
+            {
+              pitch: 0,
+              yaw: 180,
+              type: 'scene',
+              text: 'Volver a Stands',
+              sceneId: 's06_stands'
+            }
+          ]
+        },
+        s08_circulacion: {
+          title: 'Render S09 BORDE DE CAMPO',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S09 BORDE DE CAMPO.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: 0,
+              type: 'scene',
+              text: 'Ir a Foco Transición',
+              sceneId: 's09_foco'
+            },
+            {
+              pitch: 0,
+              yaw: 180,
+              type: 'scene',
+              text: 'Volver a Gastronomía',
+              sceneId: 's07_gastro'
+            }
+          ]
+        },
+        s09_foco: {
+          title: 'Render S10 FOCO TRANSICIÓN',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S10 FOCO TRANSICIÓN.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: 0,
+              type: 'scene',
+              text: 'Ir a Escenario Principal',
+              sceneId: 's10_escenario'
+            },
+            {
+              pitch: 0,
+              yaw: 180,
+              type: 'scene',
+              text: 'Volver a Circulación',
+              sceneId: 's08_circulacion'
+            }
+          ]
+        },
+        s10_escenario: {
+          title: 'Render S11 ESCENARIO PRINCIPAL',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S11 ESCENARIO PRINCIPAL.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: 180,
+              type: 'scene',
+              text: 'Volver a Foco Transición',
+              sceneId: 's09_foco'
+            },
+            {
+              pitch: 0,
+              yaw: 120,
+              type: 'scene',
+              text: 'Volver a Plaza Central',
+              sceneId: 's04_plaza'
+            }
+          ]
+        },
+        s11_pasegol: {
+          title: 'Render S12 PASEGOL',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S12 PASEGOL.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: 0,
+              type: 'scene',
+              text: 'Ir a Atajadas',
+              sceneId: 's12_atajadas'
+            },
+            {
+              pitch: 0,
+              yaw: 180,
+              type: 'scene',
+              text: 'Volver a Plaza Central',
+              sceneId: 's04_plaza'
+            }
+          ]
+        },
+        s12_atajadas: {
+          title: 'Render S13 ATAJADAS',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S13 ATAJADAS.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: 0,
+              type: 'scene',
+              text: 'Ir a Cabezazos',
+              sceneId: 's13_cabezazos'
+            },
+            {
+              pitch: 0,
+              yaw: 180,
+              type: 'scene',
+              text: 'Volver a Pasegol',
+              sceneId: 's11_pasegol'
+            }
+          ]
+        },
+        s13_cabezazos: {
+          title: 'Render S14 CABEZAZOS',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S14 CABEZAZOS.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: 0,
+              type: 'scene',
+              text: 'Ir a Freestyle',
+              sceneId: 's14_freestyle'
+            },
+            {
+              pitch: 0,
+              yaw: 180,
+              type: 'scene',
+              text: 'Volver a Atajadas',
+              sceneId: 's12_atajadas'
+            }
+          ]
+        },
+        s14_freestyle: {
+          title: 'Render S15 FREESTYLE',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S15 FREESTYLE.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: 0,
+              type: 'scene',
+              text: 'Ir a Photo Opportunity Final',
+              sceneId: 's15_photo2'
+            },
+            {
+              pitch: 0,
+              yaw: 180,
+              type: 'scene',
+              text: 'Volver a Cabezazos',
+              sceneId: 's13_cabezazos'
+            }
+          ]
+        },
+        s15_photo2: {
+          title: 'Render S16 PHOTO OPPORTUNITY',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S16 PHOTO OPPORTUNITY.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: 0,
+              type: 'scene',
+              text: 'Ir a Cierre Outdoor',
+              sceneId: 's16_cierre'
+            },
+            {
+              pitch: 0,
+              yaw: 180,
+              type: 'scene',
+              text: 'Volver a Freestyle',
+              sceneId: 's14_freestyle'
+            }
+          ]
+        },
+        s16_cierre: {
+          title: 'Render S17 CIERRE OUTDOOR',
+          type: 'equirectangular',
+          panorama: 'Render/Render HD/Render S17 CIERRE OUTDOOR.png',
+          yaw: 0,
+          hfov: 100,
+          autoLoad: true,
+          hotSpots: [
+            {
+              pitch: 0,
+              yaw: 180,
+              type: 'scene',
+              text: 'Volver al Portal',
+              sceneId: 's01_portal'
+            },
+            {
+              pitch: 0,
+              yaw: 0,
+              type: 'scene',
+              text: 'Volver a Escenario',
+              sceneId: 's10_escenario'
+            }
+          ]
+        }
+      }
+    });
+
+    document.getElementById('homeButton').addEventListener('click', function () {
+      viewer.loadScene('s01_portal');
+    });
+
+    document.getElementById('fullscreenButton').addEventListener('click', function () {
+      const element = document.documentElement;
+
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+      }
+    });
+  </script>
+</body>
+</html>
+
