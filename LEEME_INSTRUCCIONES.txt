@@ -1,0 +1,10 @@
+﻿LEEME - WALKTHROUGH 360 CÁNTALO FÚTBOL FEST
+
+1. Abrí la carpeta Walkthrough_360_Cantalo_Outdoor_FINAL.
+2. No abras index.html con doble clic: Pannellum puede fallar por seguridad CORS del navegador.
+3. Ejecutá INICIAR_SERVIDOR_LOCAL.bat.
+4. El archivo abre un servidor local con Python en el puerto 8000.
+5. El navegador se abre automáticamente en: http://localhost:8000/index.html
+6. Si no abre solo, copiá esa URL y pegala manualmente en Chrome/Edge.
+7. Para pantalla completa, usá el botón "Pantalla completa" dentro del walkthrough.
+8. No mover ni renombrar index.html, pannellum/ ni Render/.
